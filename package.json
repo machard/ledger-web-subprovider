@@ -43,7 +43,9 @@
   },
   "dependencies": {
     "@0x/subproviders": "^6.5.4",
+    "@ledgerhq/hw-app-eth": "^6.1.0",
     "ethers": "^5.4.1",
-    "ledger-web-client": "^1.0.0"
+    "ledger-web-client": "^1.0.0",
+    "ledger-web-hw-transport": "^1.0.0"
   }
 }

@@ -1,17 +1,19 @@
 import { BaseWalletSubprovider } from '@0x/subproviders/lib/src/subproviders/base_wallet_subprovider';
-import { LedgerEthereumClient, PartialTxParams } from '@0x/subproviders/lib/src/types';
+import { PartialTxParams } from '@0x/subproviders/lib/src/types';
 import LWClient from 'ledger-web-client';
+import LWHwTransport from 'ledger-web-hw-transport';
 import { ethers } from 'ethers';
+import Eth from '@ledgerhq/hw-app-eth';
 
 class LedgerWebSubProvider extends BaseWalletSubprovider {
-  app: LedgerEthereumClient;
+  app: Eth;
 
   client: LWClient;
 
-  constructor(opts: { app: LedgerEthereumClient; client: LWClient }) {
+  constructor(opts: { client: LWClient }) {
     super();
-    this.app = opts.app;
     this.client = opts.client;
+    this.app = new Eth(new LWHwTransport(this.client));
   }
 
   // eslint-disable-next-line class-methods-use-this
